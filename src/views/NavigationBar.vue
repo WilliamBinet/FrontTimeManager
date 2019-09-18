@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="topnav" id="myTopnav">
-            <a href="/" class="active">TimeManager</a>
+            <a href="/#/" class="active">TimeManager</a>
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
-            <a href="/about">About</a>
-            <a href="/sign_in" class="right-nav">Sign in</a>
-            <a href="/about" class="right-nav">Sign up</a>
+            <a href="/#/about">About</a>
+            <a href="/#/sign_in" class="right-nav">Sign in</a>
+            <a href="/#/sign_up" class="right-nav">Sign up</a>
             <a href="javascript:void(0);" class="icon" @click="hello">
                 <i class="fa fa-bars"></i>
             </a>

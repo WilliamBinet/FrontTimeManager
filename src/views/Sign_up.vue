@@ -6,17 +6,29 @@
             <div class="container centered">
                 <div class="d-flex justify-content-center">
                     <div class="user_card">
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center" >
                             <div class="brand_logo_container">
                                 <img src="../assets/logotham.png"
                                      class="brand_logo" alt="Logo">
                             </div>
-
                         </div>
-                        <div class="connexion">Connexion</div>
+                        <div class="connexion">Registration</div>
                         <div class="d-flex justify-content-center form_container">
-
                             <form>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" name="" class="form-control input_user" value=""
+                                           placeholder="First Name">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" name="" class="form-control input_user" value=""
+                                           placeholder="Last Name">
+                                </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -24,28 +36,23 @@
                                     <input type="text" name="" class="form-control input_user" value=""
                                            placeholder="Email">
                                 </div>
-                                <div class="input-group mb-2">
-                                    <div class="" style="bal">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
+                                    <input type="text" name="" class="form-control input_user" value=""
                                            placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                        <label class="custom-control-label" for="customControlInline">Stay connected ?</label>
-                                    </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <button type="button" name="button" class="btn login_btn">Login</button>
+                        <div class="d-flex justify-content-center mt-3 login_container h-75">
+                            <button type="button" name="button" class="btn login_btn">Register</button>
                         </div>
                         <div class="mt-4">
                             <div class="d-flex justify-content-center links">
-                                Don't have an account? <a href="/#/sign_up" class="ml-2">Sign Up</a>
+                                Already have an account? <a href="/#/sign_in" class="ml-2">Sign In</a>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -54,11 +61,11 @@
     </div>
 </template>
 
+
 <script>
     import NavigationBar from "./NavigationBar";
-
     export default {
-        name: "sign_in",
+        name: "Sign_up",
         components: {NavigationBar}
     }
 </script>
@@ -67,12 +74,13 @@
 
 
     .user_card {
+        height: 50%;
         width: 350px;
         background: #F9D342;
         display: flex;
         justify-content: center;
         flex-direction: column;
-        padding: 10px;
+        padding: 20px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -95,7 +103,7 @@
 
 
     .brand_logo {
-        margin-top: -50%;
+        margin-top: -55%;
         width: 150px;
         border-radius: 50%;
         border: 4px solid black;
@@ -103,7 +111,7 @@
     }
 
     .form_container {
-        margin-top: 50px;
+        margin-top: 30px;
     }
 
     .login_btn {
