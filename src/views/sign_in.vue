@@ -22,13 +22,13 @@
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
                                     <input type="text" name="" class="form-control input_user" value=""
-                                           placeholder="Email">
+                                           placeholder="Email" v-model="user.email">
                                 </div>
                                 <div class="input-group mb-2">
-                                    <div class="" style="bal">
+                                    <div class="input-group-append" >
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
+                                    <input type="password" name="" class="form-control input_pass" value="" v-model="user.password"
                                            placeholder="Password">
                                 </div>
                                 <div class="form-group">
@@ -40,11 +40,14 @@
                             </form>
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <button type="button" name="button" class="btn login_btn">Login</button>
+                            <button type="button" name="button" class="btn login_btn" @click="created">Login</button>
                         </div>
                         <div class="mt-4">
                             <div class="d-flex justify-content-center links">
                                 Don't have an account? <a href="/#/sign_up" class="ml-2">Sign Up</a>
+                            </div>
+                            <div v-if="this.connected">
+                                {{this.token}}
                             </div>
                         </div>
                     </div>
@@ -56,10 +59,47 @@
 
 <script>
     import NavigationBar from "./NavigationBar";
-
+    import axios from 'axios';
     export default {
         name: "sign_in",
-        components: {NavigationBar}
+        components: {NavigationBar},
+        data () {
+            return {
+                connected : false,
+                token : '',
+                user : {
+                    email : '',
+                    password : 'password',
+                }
+            };
+        },
+        methods: {
+            created: function (event) {
+                let user = this.user;
+                axios.post(`http://localhost:3000/users/sign_in`,  {
+                     user
+                })
+                    .then(response => {
+                        if (response.status === 200) {
+                            console.log(response);
+                            localStorage.setItem('user',JSON.stringify(response.data.user));
+                            localStorage.setItem('jwt',response.data.token);
+                            if (localStorage.getItem('jwt') != null){
+                                this.$emit('loggedIn');
+                                if(this.$route.params.nextUrl != null){
+                                    this.$router.push(this.$route.params.nextUrl)
+                                }
+                                else {
+                                        this.$router.push('/')
+                                }
+                            }
+                        }
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+            }
+        },
     }
 </script>
 
