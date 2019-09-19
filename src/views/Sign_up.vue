@@ -66,8 +66,9 @@
     import NavigationBar from "./NavigationBar";
     export default {
         name: "Sign_up",
-        components: {NavigationBar}
+        components: {NavigationBar},
     }
+
 </script>
 
 <style scoped>
