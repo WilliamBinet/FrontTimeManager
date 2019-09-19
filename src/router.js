@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Sign from './views/sign_in'
-import Sign_up from "./views/Sign_up"
+import Sign_up from "./views/Sign_up";
+import Welcome from "./views/Welcome";
 import About from "./views/About";
 
 Vue.use(Router);
@@ -16,7 +17,6 @@ let router = new Router({
             name: 'home',
             component: Home,
             meta: {
-                requiresAuth: false
             }
 
         },
@@ -40,11 +40,21 @@ let router = new Router({
             meta: {
                 requiresAuth: false
             }
+        },
+        {
+          path : '/home',
+          name : 'welcome',
+          component : Welcome,
+          meta : {
+            requiresAuth: true,
+              is_admin:true,
+          }
         }
     ]
 });
 
 router.beforeEach((to, from, next) => {
+
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (localStorage.getItem('jwt') == null) {
             next({
@@ -54,7 +64,7 @@ router.beforeEach((to, from, next) => {
         } else {
             let user = JSON.parse(localStorage.getItem('user'));
             if (to.matched.some(record => record.meta.is_admin)) {
-                if (user.is_admin == 1) {
+                if (user.role === "Administrator") {
                     next()
                 } else {
                     next({name: '/'})
@@ -67,11 +77,11 @@ router.beforeEach((to, from, next) => {
         if (localStorage.getItem('jwt') == null) {
             next()
         } else {
-            next({name: 'home'})
+            next({name: 'welcome'})
         }
     } else {
         next()
     }
-})
+});
 
 export default router;
