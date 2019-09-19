@@ -16,20 +16,20 @@
                         <div class="connexion">Connexion</div>
                         <div class="d-flex justify-content-center form_container">
 
-                            <form>
+                            <form @submit="">
                                 <div class="input-group mb-3">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
                                     <input type="text" name="" class="form-control input_user" value=""
-                                           placeholder="Email" v-model="user.email">
+                                           placeholder="Email" v-model="user.email" required>
                                 </div>
                                 <div class="input-group mb-2">
                                     <div class="input-group-append" >
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
                                     <input type="password" name="" class="form-control input_pass" value="" v-model="user.password"
-                                           placeholder="Password">
+                                           placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
@@ -43,12 +43,13 @@
                             <button type="button" name="button" class="btn login_btn" @click="created">Login</button>
                         </div>
                         <div class="mt-4">
+                            <div v-if="wrongpassoremail === true">
+                                <span style="color: red">Mot de passe ou email incorrect</span>
+                            </div>
                             <div class="d-flex justify-content-center links">
                                 Don't have an account? <a href="/#/sign_up" class="ml-2">Sign Up</a>
                             </div>
-                            <div v-if="this.connected">
-                                {{this.token}}
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -66,9 +67,10 @@
         data () {
             return {
                 connected : false,
+                wrongpassoremail : false,
                 token : '',
                 user : {
-                    email : '',
+                    email : 'administrator@email.fr',
                     password : 'password',
                 }
             };
@@ -82,6 +84,8 @@
                     .then(response => {
                         if (response.status === 200) {
                             console.log(response);
+                            this.wrongpassoremail = false;
+
                             localStorage.setItem('user',JSON.stringify(response.data.user));
                             localStorage.setItem('jwt',response.data.token);
                             if (localStorage.getItem('jwt') != null){
@@ -90,12 +94,13 @@
                                     this.$router.push(this.$route.params.nextUrl)
                                 }
                                 else {
-                                        this.$router.push('/')
+                                    this.$router.push('/')
                                 }
                             }
                         }
                     })
                     .catch(e => {
+                        this.wrongpassoremail = true;
                         console.log(e);
                     })
             }

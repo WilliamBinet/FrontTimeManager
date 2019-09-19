@@ -5,8 +5,9 @@
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="/#/about">About</a>
-            <a href="/#/sign_in" class="right-nav">Sign in</a>
-            <a href="/#/sign_up" class="right-nav">Sign up</a>
+            <a href="/#/sign_in" class="right-nav" v-if="!user">Sign in</a>
+            <a href="/#/sign_up" class="right-nav" v-if="!user">Sign up</a>
+            <a href="" class="right-nav" v-if="user" @click="hello">Sign out</a>
             <a href="javascript:void(0);" class="icon" @click="hello">
                 <i class="fa fa-bars"></i>
             </a>
@@ -17,20 +18,22 @@
 <script>
     export default {
         name: "NavigationBar",
+        data() {
+            return {
+                user: JSON.parse(localStorage.getItem('user'))
+            };
+        },
         methods: {
-            hello: function () {
-                var x = document.getElementById("myTopnav");
-                if (x.className === "topnav") {
-                    x.className += " responsive";
-                } else {
-                    x.className = "topnav";
-                }
+            hello: function (e) {
+                e.preventDefault();
+                localStorage.removeItem('user');
+                localStorage.removeItem('jwt');
+                this.user = null;
             }
         }
     }
 
     function warn() {
-        alert("message")
     }
 
 </script>
