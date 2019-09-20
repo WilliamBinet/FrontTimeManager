@@ -5,6 +5,7 @@
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="/#/about">About</a>
+            <a href="/#/admin" v-if="user && user.role === 'Administrator'">Administrateur</a>
             <a href="/#/sign_in" class="right-nav" v-if="!user">Sign in</a>
             <a href="/#/sign_up" class="right-nav" v-if="!user">Sign up</a>
             <a href="" class="right-nav" v-if="user" @click="hello">Sign out</a>

@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+    <NavigationBar/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
@@ -25,3 +27,10 @@
   color: #42b983;
 }
 </style>
+<script>
+  import NavigationBar from "./views/NavigationBar";
+  import Footer from "./views/Footer";
+  export default {
+    components: {Footer, NavigationBar}
+  }
+</script>

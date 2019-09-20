@@ -5,6 +5,7 @@ import Sign from './views/sign_in'
 import Sign_up from "./views/Sign_up";
 import Welcome from "./views/Welcome";
 import About from "./views/About";
+import Admin from "./views/Admin";
 
 Vue.use(Router);
 
@@ -25,7 +26,6 @@ let router = new Router({
             name: 'sign_in',
             component: Sign,
             meta: {
-                guest: true
             }
         },
         {
@@ -49,6 +49,14 @@ let router = new Router({
             requiresAuth: true,
               is_admin:true,
           }
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: Admin,
+            meta: {
+                is_admin: true,
+            }
         }
     ]
 });
