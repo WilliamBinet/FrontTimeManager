@@ -2,10 +2,13 @@
   <div class="about">
     <NavigationBar/>
     <div class="centerContent">
-      <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
+      <div class="row jumbotron p-3 p-md-4 text-white rounded bg-dark">
+        <div class="col-md-4 col-lg-6 px-0">
           <h1 class="display-4 font-italic">"Modern problems require modern solutions"</h1>
           <p class="lead my-3">Today, Gotham have some issues for tracking time of their employees, but this app is the solution</p>
+        </div>
+        <div class="col-md-1 col-lg-6">
+          <img class = "imglight" src="../assets/light.png">
         </div>
     </div>
 
@@ -67,5 +70,8 @@
     color: #F9D342;
     font-family: American Typewriter,serif;
 
+  }
+  .imglight {
+    margin-bottom: 10px;
   }
 </style>
