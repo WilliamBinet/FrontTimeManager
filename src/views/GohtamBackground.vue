@@ -1,8 +1,6 @@
 <template>
     <div>
         <div class="text">Time Manager </div>
-
-
         <img src="../assets/gotham.jpg" alt="" style="width: 100%; filter: grayscale(45%) brightness(130%)">
     </div>
 </template>

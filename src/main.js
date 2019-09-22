@@ -17,8 +17,6 @@ if (token ==! '') {
   Vue.prototype.$http.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
 }
 
-
-
 new Vue({
   router,
   render: h => h(App),

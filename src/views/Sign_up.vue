@@ -1,7 +1,6 @@
 <template>
     <div>
         <NavigationBar/>
-
         <div>
             <div class="container centered">
                 <div class="d-flex justify-content-center">
@@ -65,7 +64,7 @@
 
 
 <script>
-    import NavigationBar from "./NavigationBar";
+    import NavigationBar from "./HeaderFooter/NavigationBar";
     import axios from 'axios';
     export default {
         name: "Sign_up",

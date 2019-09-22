@@ -1,15 +1,13 @@
 <template>
     <div>
         <NavigationBar/>
-        {{user.role}}
-        <Footer/>
     </div>
 
 </template>
 
 <script>
-    import NavigationBar from "./NavigationBar";
-    import Footer from "./Footer";
+    import NavigationBar from "./HeaderFooter/NavigationBar";
+    import Footer from "./HeaderFooter/Footer";
 
     export default {
         name: "Welcome",

@@ -59,11 +59,13 @@
 </template>
 
 <script>
-    import NavigationBar from "./NavigationBar";
+    import { SidebarMenu } from 'vue-sidebar-menu'
+    import NavigationBar from "./HeaderFooter/NavigationBar";
     import axios from 'axios';
+    import Bus from '../utils/Bus'
     export default {
         name: "sign_in",
-        components: {NavigationBar},
+        components: {NavigationBar ,SidebarMenu},
         data () {
             return {
                 connected : false,
@@ -86,10 +88,9 @@
                             console.log(response);
                             this.wrongpassoremail = false;
 
-                            localStorage.setItem('user',JSON.stringify(response.data.user));
+                            localStorage.setItem('user',JSON.stringify(response.data.user) );
                             localStorage.setItem('jwt',response.data.token);
                             if (localStorage.getItem('jwt') != null){
-                                this.$emit('loggedIn');
                                 if(this.$route.params.nextUrl != null){
                                     this.$router.push(this.$route.params.nextUrl)
                                 }

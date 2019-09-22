@@ -1,16 +1,16 @@
 <template>
   <div class="home">
     <NavigationBar/>
+
     <GohtamBackground/>
-    <Footer/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "./HeaderFooter/NavigationBar";
 import GohtamBackground from "./GohtamBackground";
-import Footer from "./Footer";
+import Footer from "./HeaderFooter/Footer";
 export default {
   name: 'home',
   components: {

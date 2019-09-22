@@ -6,6 +6,7 @@ import Sign_up from "./views/Sign_up";
 import Welcome from "./views/Welcome";
 import About from "./views/About";
 import Admin from "./views/Admin";
+import SideMenu from "./views/SideMenu";
 
 Vue.use(Router);
 
@@ -20,6 +21,11 @@ let router = new Router({
             meta: {
             }
 
+        },
+        {
+            path : '/menu',
+            name :'menu',
+            component : SideMenu
         },
         {
             path: '/sign_in',
