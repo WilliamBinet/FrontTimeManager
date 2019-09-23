@@ -22,8 +22,7 @@
                         :custom-label="labelRole"
                         :placeholder ="`Please select a Role`">
                 </Multiselect>
-                <button @click="changeRole"   v-if="selectedRole && selectedUser">Change user role</button>
-
+                <button @click="changeRole"   v-if="selectedRole && selectedUser">Change user role</button>Ò
             </div>
 
         </div>

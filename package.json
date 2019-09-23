@@ -12,15 +12,21 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.1",
     "core-js": "^2.6.5",
+    "dateformat": "^3.0.3",
+    "luxon": "^1.19.2",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
     "vue-auth": "^1.0.0-alpha.1",
     "vue-axios": "^2.1.4",
+    "vue-ctk-date-time-picker": "^2.2.0",
+    "vue-datetime": "^1.0.0-beta.10",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.0.3",
     "vue-sidebar-menu": "^4.2.1",
-    "vuesax": "^3.10.4"
+    "vuejs-datepicker": "^1.6.2",
+    "vuesax": "^3.10.4",
+    "weekstart": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

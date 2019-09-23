@@ -7,6 +7,9 @@ import Welcome from "./views/Welcome";
 import About from "./views/About";
 import Admin from "./views/Admin";
 import SideMenu from "./views/SideMenu";
+import Clocks from "./views/Clocks";
+import WorkingTimeUser from "./views/WorkingTimeUser";
+import ProfileUser from "./views/ProfileUser";
 
 Vue.use(Router);
 
@@ -22,6 +25,30 @@ let router = new Router({
             }
 
         },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: ProfileUser,
+            meta: {
+            }
+
+        },
+        {
+            path: '/workingTime',
+            name: 'workingTime',
+            component: WorkingTimeUser,
+            meta: {
+            }
+        },
+        {
+            path: '/clock',
+            name: 'clock',
+            component: Clocks,
+            meta: {
+            }
+
+        },
+
         {
             path : '/menu',
             name :'menu',
