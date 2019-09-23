@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p>Gestion des equipes administrateur</p>
         <div class="card m-2">
             <h5 class="card-header">Select the team to manage</h5>
             <div class="card-body">
@@ -11,21 +10,6 @@
                         :placeholder="`Please select a Team`"
                         @input="getUserFromTeam()" class="text-center" style="margin-bottom: 10px">
                 </Multiselect>
-            </div>
-        </div>
-
-        <div class="card m-2" v-if="selectedTeam">
-            <h5 class="card-header">Edit  {{selectedTeam.name}}</h5>
-            <div class="card-body">
-                <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="basic-addon1">
-                <Multiselect v-if="listManager"
-                             v-model="newManager"
-                             :options="listManager"
-                             :custom-label="labelUser"
-                             :placeholder ="`Select the new manager`">
-                </Multiselect>
-                <button v-if="newName || newManager" @click="editTeam"> Edit the team</button>
             </div>
         </div>
 
@@ -56,22 +40,32 @@
                     <button v-if="selectedUserToAdd" @click="addUserToTeam"> Add to team</button>
                 </div>
             </div>
+            <div class="card w-50" v-if="selectedTeam">
+                <h5 class="card-header">Edit  {{selectedTeam.name}}</h5>
+                <div class="card-body">
+                    <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                           aria-describedby="basic-addon1">
+                    <Multiselect v-if="listManager"
+                                 v-model="newManager"
+                                 :options="listManager"
+                                 :custom-label="labelUser"
+                                 :placeholder ="`Select the new manager`">
+                    </Multiselect>
+                    <button v-if="newName || newManager" @click="editTeam"> Edit the team</button>
+                </div>
+            </div>
         </div>
-        <CreateATeam/>
     </div>
 </template>
 
 <script>
-
     import Multiselect from 'vue-multiselect'
     import TeamService from '../../services/TeamService'
     import UserService from "../../services/UserService";
-    import axios from 'axios'
     import NavigationBar from "../HeaderFooter/NavigationBar";
     import CreateATeam from "./CreateATeam";
-
     export default {
-        name: "GestionDeTeam",
+        name: "ManageEditTeamAdmin",
         components: {CreateATeam, NavigationBar, Multiselect},
         data() {
             return {
@@ -93,7 +87,6 @@
             this.getAllUsers();
             this.loadManager();
         },
-
         methods: {
             customLabel(option) {
                 return `${option.name}`
@@ -187,12 +180,4 @@
 
 <style scoped>
 
-    button {
-        text-align: left;
-    }
-
-    .overflow {
-        max-height: 400px;
-        overflow: auto;
-    }
 </style>

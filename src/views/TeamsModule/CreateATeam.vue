@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card w-50">
+        <div class="card m-2">
             <h5 class="card-header">Create a team</h5>
             <div class="card-body">
                 <input v-model="name" type="text" class="form-control" placeholder="Username" aria-label="Username"

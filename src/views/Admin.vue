@@ -1,12 +1,12 @@
 <template>
     <div>
         <NavigationBar/>
-        <div style="width: 50%;background: gold">
+        <div style="">
             <GrantUser/>
         </div>
-        <div class="w-50">
-            <GestionDeTeam/>
-        </div>
+
+
+        <GestionDeTeam/>
         <Footer/>
     </div>
 </template>

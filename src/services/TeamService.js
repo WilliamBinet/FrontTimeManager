@@ -55,7 +55,18 @@ export default  {
             }
         };
         return axios.post(process.env.VUE_APP_URL + '/teams', team).catch(e => alert(e.response.message));
+    },
+
+    editTeam(idTeam, team) {
+        let update = {
+          updates : team
+        };
+
+        return axios.put(process.env.VUE_APP_URL + '/teams/' + idTeam, update).catch(e => {
+            alert(e.response.statusText)
+        });
     }
+
 
 
 

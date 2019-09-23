@@ -4,24 +4,30 @@
             Administration of user's roles
         </p>
 
-        <Multiselect
-                v-model="selectedUser"
-                :options="options"
-                :multiple="false"
-                track-by="id"
-                :custom-label="customLabel"
-                @input="refreshRole" :placeholder ="`Please select a User`" style="margin-bottom: 20px">
-        </Multiselect>
+        <div class="card m-2">
+            <h5 class="card-header">Grant users</h5>
+            <div class="card-body">
+                <Multiselect
+                        v-model="selectedUser"
+                        :options="options"
+                        :multiple="false"
+                        track-by="id"
+                        :custom-label="customLabel"
+                        @input="refreshRole" :placeholder ="`Please select a User`" style="margin-bottom: 20px">
+                </Multiselect>
 
-        <Multiselect
-                v-model="selectedRole"
-                :options="roles"
-                :custom-label="labelRole"
-                :placeholder ="`Please select a Role`">
-        </Multiselect>
+                <Multiselect
+                        v-model="selectedRole"
+                        :options="roles"
+                        :custom-label="labelRole"
+                        :placeholder ="`Please select a Role`">
+                </Multiselect>
+                <button @click="changeRole"   v-if="selectedRole && selectedUser">Change user role</button>
 
+            </div>
 
-        <button @click="changeRole" class="text-left" >Change user role</button>
+        </div>
+
     </div>
 
 </template>
