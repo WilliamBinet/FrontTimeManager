@@ -1,63 +1,70 @@
 <template>
     <div>
-        <p>Gestion des equipes</p>
-        <div class="card m-2">
-            <h5 class="card-header">Select the team to manage</h5>
-            <div class="card-body">
-                <Multiselect
-                        v-model="selectedTeam"
-                        :options="teams"
-                        :custom-label="customLabel"
-                        :placeholder="`Please select a Team`"
-                        @input="getUserFromTeam()" class="text-center" style="margin-bottom: 10px">
-                </Multiselect>
-            </div>
-        </div>
-
-        <div class="card m-2" v-if="selectedTeam">
-            <h5 class="card-header">Edit {{selectedTeam.name}}</h5>
-            <div class="card-body">
-                <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="basic-addon1">
-                <Multiselect v-if="listManager && currentUser.role !== 'Manager'"
-                             v-model="newManager"
-                             :options="listManager"
-                             :custom-label="labelUser"
-                             :placeholder="`Select the new manager`">
-                </Multiselect>
-                <button v-if="newName || newManager" @click="editTeam"> Edit the team</button>
-            </div>
-        </div>
-
-
-        <div class="d-flex">
-            <div class="card w-50 m-2" v-if="usersInTeam">
-                <h5 class="card-header">Remove user from {{selectedTeam.name}}</h5>
+        <NavigationBar/>
+        <div v-if="teams.length !== 0">
+            <p>Gestion des equipes</p>
+            <div class="card m-2">
+                <h5 class="card-header">Select the Team</h5>
                 <div class="card-body">
-                    <Multiselect v-if="usersInTeam"
-                                 v-model="selectedUserToDelete"
-                                 :options="usersInTeam"
-                                 :custom-label="labelUser"
-                                 :placeholder="`Please select a User from the team`">
+                    <Multiselect
+                            v-model="selectedTeam"
+                            :options="teams"
+                            :custom-label="customLabel"
+                            :placeholder="`Please select a Team`"
+                            @input="getUserFromTeam()" class="text-center" style="margin-bottom: 10px">
                     </Multiselect>
-                    <button v-if="selectedUserToDelete" @click="deleteUserFromTeam"> Remove from team</button>
                 </div>
             </div>
 
-            <div class="card w-50 m-2" v-if="usersInTeam">
-                <h5 class="card-header">Add user to {{selectedTeam.name}}</h5>
+            <div class="card m-2" v-if="selectedTeam">
+                <h5 class="card-header">Edit {{selectedTeam.name}}</h5>
                 <div class="card-body">
-                    <Multiselect v-if="usersNotInTeam"
-                                 v-model="selectedUserToAdd"
-                                 :options="usersNotInTeam"
+                    <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                           aria-describedby="basic-addon1">
+                    <Multiselect v-if="listManager && currentUser.role !== 'Manager'"
+                                 v-model="newManager"
+                                 :options="listManager"
                                  :custom-label="labelUser"
-                                 :placeholder="`Please select a User to add to the team`">
+                                 :placeholder="`Select the new manager`">
                     </Multiselect>
-                    <button v-if="selectedUserToAdd" @click="addUserToTeam"> Add to team</button>
+                    <button v-if="newName || newManager" @click="editTeam"> Edit the team</button>
                 </div>
             </div>
+
+
+            <div class="d-flex">
+                <div class="card w-50 m-2" v-if="usersInTeam">
+                    <h5 class="card-header">Remove user from {{selectedTeam.name}}</h5>
+                    <div class="card-body">
+                        <Multiselect v-if="usersInTeam"
+                                     v-model="selectedUserToDelete"
+                                     :options="usersInTeam"
+                                     :custom-label="labelUser"
+                                     :placeholder="`Please select a User from the team`">
+                        </Multiselect>
+                        <button v-if="selectedUserToDelete" @click="deleteUserFromTeam"> Remove from team</button>
+                    </div>
+                </div>
+
+                <div class="card w-50 m-2" v-if="usersInTeam">
+                    <h5 class="card-header">Add user to {{selectedTeam.name}}</h5>
+                    <div class="card-body">
+                        <Multiselect v-if="usersNotInTeam"
+                                     v-model="selectedUserToAdd"
+                                     :options="usersNotInTeam"
+                                     :custom-label="labelUser"
+                                     :placeholder="`Please select a User to add to the team`">
+                        </Multiselect>
+                        <button v-if="selectedUserToAdd" @click="addUserToTeam"> Add to team</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <CreateATeam/>
+        <div v-else>
+            You don't have any team
+        </div>
+        <CreateATeam v-if="currentUser.role !== 'Employee'"/>
     </div>
 </template>
 

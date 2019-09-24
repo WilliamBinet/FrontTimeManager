@@ -5,8 +5,9 @@
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="/#/about">About</a>
-            <a href="/#/admin" v-if="user && user.role === 'Administrator' ">Administrateur</a>
-            <a href="/#/workingtimes" v-if="user">Working Times</a>
+            <a href="/#/workingtimes" v-if="user">Mes Working Times</a>
+            <a href="/#/users" v-if="user && user.role === 'Administrator' ">Users</a>
+            <a href="/#/my_teams" v-if="user">Teams</a>
             <a href="/#/sign_in" class="right-nav" v-if="!user">Sign in</a>
             <a href="/#/sign_up" class="right-nav" v-if="!user">Sign up</a>
             <a href="" class="right-nav" v-if="user" @click="hello">Sign out</a>

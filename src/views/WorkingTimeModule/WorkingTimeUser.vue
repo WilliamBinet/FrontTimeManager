@@ -5,7 +5,8 @@
     <div class="card">
         <div class="card-body">
             <div id="table" class="table-editable">
-                <div ><span>Select your working times</span>
+                <div v-if="this.$route.params.workingTimeId" >
+                    <span>Select your working times</span>
                     <div class="d-flex">
                         <vue-ctk-date-time-picker v-model="start" class="m-2 w-50"/>
                         <vue-ctk-date-time-picker v-model="end" class="m-2 w-50"/>
@@ -55,8 +56,8 @@
     import Datetime from 'vue-datetime';
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
-    import WorkingTimeService from "../services/WorkingTimeService";
-    import NavigationBar from "./HeaderFooter/NavigationBar";
+    import WorkingTimeService from "../../services/WorkingTimeService";
+    import NavigationBar from "../HeaderFooter/NavigationBar";
 
     export default {
         components: {NavigationBar, VueCtkDateTimePicker},
@@ -99,10 +100,16 @@
                 });
             },
             loadWorkingTime() {
-                WorkingTimeService.getWorkingTimeFromUser(this.start, this.end, JSON.parse(localStorage.getItem('user')).id).then(resp => {
-                    console.log(resp.data);
-                    this.workingtimes = resp.data;
-                })
+                    console.log("Ma route " +  this.$route.params.workingTimeId);
+                    if (this.$route.params.workingTimeId !== null ){
+
+                    } else {
+                        WorkingTimeService.getWorkingTimeFromUser(this.start, this.end, JSON.parse(localStorage.getItem('user')).id).then(resp => {
+                            console.log(resp.data);
+                            this.workingtimes = resp.data;
+                        })
+                    }
+
             }
         }
     }

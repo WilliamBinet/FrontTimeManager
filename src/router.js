@@ -8,9 +8,10 @@ import About from "./views/About";
 import Admin from "./views/Admin";
 import SideMenu from "./views/SideMenu";
 import Clocks from "./views/Clocks";
-import WorkingTimeUser from "./views/WorkingTimeUser";
+import WorkingTimeUser from "./views/WorkingTimeModule/WorkingTimeUser";
 import ProfileUser from "./views/ProfileUser";
 import GestionDeTeam from "./views/TeamsModule/GestionDeTeam";
+import GestionUser from "./views/GestionUser";
 
 Vue.use(Router);
 
@@ -77,7 +78,7 @@ let router = new Router({
         {
             path: '/workingTime/:workingTimeId',
             name: 'modifyWorkingTime',
-            component: ProfileUser,
+            component: WorkingTimeUser,
             meta: {}
         },
         {
@@ -103,7 +104,6 @@ let router = new Router({
             component: Clocks,
             meta: {
                 requiresAuth: true,
-
                 is_manager: true,
             }
         },
@@ -115,6 +115,13 @@ let router = new Router({
                 requiresAuth: true,
 
             }
+
+        },
+        {
+            path: '/users/',
+            name: 'listUser',
+            component: GestionUser,
+            meta: {}
 
         },
         {

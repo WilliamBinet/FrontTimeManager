@@ -21,7 +21,7 @@ export default  {
         console.log('RRRR' + JSON.stringify(workingTime) );
         return axios.put(process.env.VUE_APP_URL + /workingtimes/ + workingTime.id, update).catch( e => {
             alert("Cannot update" + e.response.statusText) ;
-        })
+        });
 
     }
 }

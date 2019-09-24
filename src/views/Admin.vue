@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import GrantUser from "./GrantUser";
+    import GrantUser from "./TeamsModule/GrantUser";
     import GestionDeTeam from "./TeamsModule/GestionDeTeam";
     import NavigationBar from "./HeaderFooter/NavigationBar";
     import Footer from "./HeaderFooter/Footer";
