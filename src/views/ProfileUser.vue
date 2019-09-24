@@ -41,9 +41,15 @@
             }
         },
 
-        mounted() {
-            this.user = JSON.parse(localStorage.getItem('user'));
-            console.log(this.user);
+        mounted :function () {
+
+            if ( undefined !== this.$route.params.id){
+                UserService.getUserById(this.$route.params.id).then(resp => {
+                   this.user = resp.data;
+                });
+            } else {
+                this.user = JSON.parse(localStorage.getItem('user'));
+            }
         },
         name: "ProfileUser",
 

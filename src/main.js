@@ -8,7 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
-
+Vue.use(router);
 Vue.prototype.$http = Axios;
 const token = localStorage.getItem('token');
 if (token ==! '') {
@@ -16,6 +16,8 @@ if (token ==! '') {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
   Vue.prototype.$http.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
 }
+
+
 
 new Vue({
   router,

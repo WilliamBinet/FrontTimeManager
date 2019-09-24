@@ -74,9 +74,9 @@
         },
 
         methods: {
-            customLabel(option) {
-                return `${option.name}`
-            },
+                customLabel(option) {
+                    return `${option.name}`
+                },
             webcamSendRequestButton(e) {
                 WorkingTimeService.deleteWorkingTime(e.id).then(resp => {
                     console.log( JSON.stringify(resp));

@@ -5,7 +5,6 @@
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="/#/about">About</a>
-            <a href="/#/bar">About</a>
             <a href="/#/admin" v-if="user">Administrateur</a>
             <a href="/#/sign_in" class="right-nav" v-if="!user">Sign in</a>
             <a href="/#/sign_up" class="right-nav" v-if="!user">Sign up</a>

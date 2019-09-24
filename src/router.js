@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Sign from './views/sign_in'
-import Sign_up from "./views/Sign_up";
+import Sign from './views/Authentication'
+import Sign_up from "./views/Registration";
 import Welcome from "./views/Welcome";
 import About from "./views/About";
 import Admin from "./views/Admin";
@@ -21,45 +21,111 @@ let router = new Router({
             path: '/',
             name: 'home',
             component: Home,
-            meta: {
-            }
+            meta: {}
 
         },
+
+
         {
             path: '/profile',
-            name: 'profile',
+            name: 'profileCurrentUser',
+            component: ProfileUser,
+            meta: {}
+
+        },
+        {
+            path: '/workingTimes',
+            name: 'workingTimes',
+            component: WorkingTimeUser,
+            meta: {}
+        },
+        {
+            path: '/workingTimes',
+            name: 'workingTimeCurrentUser',
+            component: ProfileUser,
+            meta: {}
+
+        },
+        {
+            path: '/workingTimes/user/:userId',
+            name: 'workingTimeCurrentUser',
             component: ProfileUser,
             meta: {
+                requiresAuth: true,
+                is_manager: true,
             }
 
         },
         {
-            path: '/workingTime',
-            name: 'workingTime',
-            component: WorkingTimeUser,
+            path: '/workingTime/',
+            name: 'addWorkingTimeCurrentUser',
+            component: ProfileUser,
+            meta: {}
+
+        },
+        {
+            path: '/workingTime/user/:userId',
+            name: 'addWorkingTimeIdUser',
+            component: ProfileUser,
             meta: {
+                is_manager: true, requiresAuth: true,
+
+            }
+
+        },
+        {
+            path: '/workingTime/:workingTimeId',
+            name: 'modifyWorkingTime',
+            component: ProfileUser,
+            meta: {}
+        },
+
+        {
+            path: '/workingTime/user/:userId/:workingTimeId',
+            name: 'updateWorkingTimeByUserIdAndId',
+            component: ProfileUser,
+            meta: {
+                is_manager: true,
+                requiresAuth: true,
+
             }
         },
         {
             path: '/clock',
-            name: 'clock',
+            name: 'clocks',
             component: Clocks,
-            meta: {
-            }
+            meta: {}
 
         },
-
         {
-            path : '/menu',
-            name :'menu',
-            component : SideMenu
+            path: '/clock/user/:userId',
+            name: 'editClockUser',
+            component: Clocks,
+            meta: {
+                requiresAuth: true,
+
+                is_manager: true,
+            }
+        },
+        {
+            path: '/my_teams',
+            name: 'getTeams',
+            component: ProfileUser,
+            meta: {}
+
+        },
+        {
+            path: '/users/profile/:id?',
+            name: 'profile/:id',
+            component: ProfileUser,
+            meta: {}
+
         },
         {
             path: '/sign_in',
             name: 'sign_in',
             component: Sign,
-            meta: {
-            }
+            meta: {}
         },
         {
             path: '/about',
@@ -75,13 +141,13 @@ let router = new Router({
             }
         },
         {
-          path : '/home',
-          name : 'welcome',
-          component : Welcome,
-          meta : {
-            requiresAuth: true,
-              is_admin:true,
-          }
+            path: '/home',
+            name: 'welcome',
+            component: Welcome,
+            meta: {
+                requiresAuth: true,
+                is_admin: true,
+            }
         },
         {
             path: '/admin',
@@ -109,6 +175,12 @@ router.beforeEach((to, from, next) => {
                     next()
                 } else {
                     next({name: '/'})
+                }
+            } else if (to.matched.some(record => record.meta.is_manager)) {
+                if (user.role === "Administrator" || user.role === "Manager") {
+                    next()
+                } else {
+                    next({name: '/'});
                 }
             } else {
                 next()

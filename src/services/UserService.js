@@ -2,6 +2,12 @@ import axios from 'axios'
 
 export default {
 
+    getUserById(id) {
+        return axios.get(process.env.VUE_APP_URL + '/users/' + id).catch(e => {
+            alert(e.message.statusText);
+        });
+    },
+
     getAllUser() {
         return axios.get(process.env.VUE_APP_URL + '/users').catch(e => {
             alert(e.response.statusText);
@@ -9,7 +15,7 @@ export default {
     },
 
     getUsersByRole(role) {
-        return axios.get(process.env.VUE_APP_URL + '/users?role=' + role).catch( e => alert(e.reponse.statusText));
+        return axios.get(process.env.VUE_APP_URL + '/users?role=' + role).catch( e => alert(e.response.statusText));
     },
 
     updateUser(user) {
