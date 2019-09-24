@@ -1,9 +1,8 @@
 <template>
 
-
-    <!-- Editable table -->
+<div>
+    <NavigationBar/>
     <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
         <div class="card-body">
             <div id="table" class="table-editable">
                 <div ><span>Select your working times</span>
@@ -26,7 +25,7 @@
                     </thead>
                     <tbody>
                     <tr v-if="workingtimes" v-for="working in workingtimes">
-                        <td class="pt-3-half"><input v-model="working.id" placeholder="modifiez-moi" disabled>
+                        <td class="pt-3-half">  <a v-bind:href="'/#/WorkingTime/'  + working.id"> {{working.id}} </a>
                         </td>
                         <td class="pt-3-half" contenteditable="false"> <VueCtkDateTimePicker v-model="working.start" />
                         </td>
@@ -35,15 +34,18 @@
                                                                @click="webcamSendRequestButton(working)"
                                                                class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                         </td><td><span class="table-remove"><button type="button"
-                                                               @click="updateWorkingTime(working)"
-                                                               class="btn btn-danger btn-rounded btn-sm my-0">Update</button></span>
-                        </td>
+                                                                    @click="updateWorkingTime(working)"
+                                                                    class="btn btn-danger btn-rounded btn-sm my-0">Update</button></span>
+                    </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+</div>
+    <!-- Editable table -->
+
     <!-- Editable table -->
 </template>
 
@@ -54,9 +56,10 @@
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
     import WorkingTimeService from "../services/WorkingTimeService";
+    import NavigationBar from "./HeaderFooter/NavigationBar";
 
     export default {
-        components: {VueCtkDateTimePicker},
+        components: {NavigationBar, VueCtkDateTimePicker},
 
         name: "WorkingTimeUser",
         data() {

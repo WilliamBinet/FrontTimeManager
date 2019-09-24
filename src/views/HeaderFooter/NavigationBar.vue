@@ -5,7 +5,8 @@
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="/#/about">About</a>
-            <a href="/#/admin" v-if="user">Administrateur</a>
+            <a href="/#/admin" v-if="user && user.role === 'Administrator' ">Administrateur</a>
+            <a href="/#/workingtimes" v-if="user">Working Times</a>
             <a href="/#/sign_in" class="right-nav" v-if="!user">Sign in</a>
             <a href="/#/sign_up" class="right-nav" v-if="!user">Sign up</a>
             <a href="" class="right-nav" v-if="user" @click="hello">Sign out</a>
@@ -21,12 +22,6 @@
 
     export default {
         name: "NavigationBar",
-        created() {
-            Bus.$on('logged', function (user) {
-                this.user = user ;
-                this.$forceUpdate();
-            });
-        },
         data() {
             return {
                 user: JSON.parse(localStorage.getItem('user'))
@@ -39,6 +34,7 @@
                 localStorage.removeItem('user');
                 localStorage.removeItem('jwt');
                 this.user = null;
+                this.$router.push('/');
             },
         }
     }

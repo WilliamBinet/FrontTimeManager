@@ -10,6 +10,7 @@ import SideMenu from "./views/SideMenu";
 import Clocks from "./views/Clocks";
 import WorkingTimeUser from "./views/WorkingTimeUser";
 import ProfileUser from "./views/ProfileUser";
+import GestionDeTeam from "./views/TeamsModule/GestionDeTeam";
 
 Vue.use(Router);
 
@@ -79,7 +80,6 @@ let router = new Router({
             component: ProfileUser,
             meta: {}
         },
-
         {
             path: '/workingTime/user/:userId/:workingTimeId',
             name: 'updateWorkingTimeByUserIdAndId',
@@ -110,8 +110,11 @@ let router = new Router({
         {
             path: '/my_teams',
             name: 'getTeams',
-            component: ProfileUser,
-            meta: {}
+            component: GestionDeTeam,
+            meta: {
+                requiresAuth: true,
+
+            }
 
         },
         {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Gestion des equipes administrateur</p>
+        <p>Gestion des equipes</p>
         <div class="card m-2">
             <h5 class="card-header">Select the team to manage</h5>
             <div class="card-body">
@@ -15,15 +15,15 @@
         </div>
 
         <div class="card m-2" v-if="selectedTeam">
-            <h5 class="card-header">Edit  {{selectedTeam.name}}</h5>
+            <h5 class="card-header">Edit {{selectedTeam.name}}</h5>
             <div class="card-body">
                 <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Username"
                        aria-describedby="basic-addon1">
-                <Multiselect v-if="listManager"
+                <Multiselect v-if="listManager && currentUser.role !== 'Manager'"
                              v-model="newManager"
                              :options="listManager"
                              :custom-label="labelUser"
-                             :placeholder ="`Select the new manager`">
+                             :placeholder="`Select the new manager`">
                 </Multiselect>
                 <button v-if="newName || newManager" @click="editTeam"> Edit the team</button>
             </div>
@@ -85,11 +85,12 @@
                 selectedTeam: null,
                 selectedUserToDelete: null,
                 selectedUserToAdd: null,
-                options: []
+                options: [],
+                currentUser: JSON.parse(localStorage.getItem('user'))
             }
         },
         created: function () {
-            this.getAllTeams();
+            this.getTeamsOfUser();
             this.getAllUsers();
             this.loadManager();
         },
@@ -104,10 +105,22 @@
             },
 
 
-            getAllTeams() {
-                TeamService.getAllTeams().then(resp => {
-                    this.teams = resp.data;
-                });
+            getTeamsOfUser() {
+                if (this.currentUser.role === 'Administator') {
+                    TeamService.getAllTeams().then(resp => {
+                        this.teams = resp.data;
+                    });
+                } else if (this.currentUser.role === 'Manager') {
+                    TeamService.getTeamsOfManager(this.currentUser.id).then(resp => {
+                        console.log('mes team mama   ' + JSON.stringify(resp.data));
+                        this.teams = resp.data;
+                    })
+                } else {
+                    TeamService.getTeamsOfUser(this.currentUser.id).then(resp => {
+                        this.teams = resp.data;
+                        s
+                    })
+                }
             },
 
             getUserNotInTeam() {
@@ -166,19 +179,24 @@
                 })
             },
             loadManager() {
-                return  UserService.getUsersByRole('Manager').then(resp => {
+                return UserService.getUsersByRole('Manager').then(resp => {
                     this.listManager = resp.data;
                 });
             },
 
             editTeam() {
-                let team = {
-                    name : this.newName,
-                    id_manager: this.newManager.id
-                };
-                console.log('mon id ' + this.selectedTeam.id);
+                let team = {};
+                if (this.newName !== null || this.newName !== '') {
+                    team.name = this.newName;
+                }
+                if (this.newManager !== null) {
+                    team.id_manager.id = this.newManager.id;
+                }
                 return TeamService.editTeam(this.selectedTeam.id, team).then(resp => {
                     alert(resp.statusText);
+                    this.getTeamsOfUser();
+                    this.getAllUsers();
+                    this.loadManager();
                 })
             }
         }

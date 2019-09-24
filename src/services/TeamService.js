@@ -65,6 +65,18 @@ export default  {
         return axios.put(process.env.VUE_APP_URL + '/teams/' + idTeam, update).catch(e => {
             alert(e.response.statusText)
         });
+    },
+
+    getTeamsOfUser(id_user) {
+        return axios.get(process.env.VUE_APP_URL + '/teams/user/' + id_user).catch(e => {
+            alert(e.response.statusText);
+        })
+    },
+
+    getTeamsOfManager(id_manager) {
+        return axios.get(process.env.VUE_APP_URL + '/teams/manager/' + id_manager) .catch( e => {
+            alert(e.response.statusText);
+        })
     }
 
 
