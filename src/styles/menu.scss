@@ -66,12 +66,12 @@ ul {
 
 .menu__arrow-icon {
   float: right;
-  margin: 5px 0 0 0;
+  margin: 5px 0 0;
 }
 
 .menu__link {
   display: block;
-  padding: 10px 15px 10px 15px;
+  padding: 10px 15px;
   color: #fff;
   text-decoration: none;
   background: #31373D;
@@ -113,7 +113,7 @@ ul {
 }
 
 .context-menu__title-icon {
-  margin: 0 0 0 0;
+  margin: 0;
 }
 
 .context-menu__btn-close {
