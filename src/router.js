@@ -12,6 +12,7 @@ import WorkingTimeUser from "./views/WorkingTimeModule/WorkingTimeUser";
 import ProfileUser from "./views/ProfileUser";
 import GestionDeTeam from "./views/TeamsModule/GestionDeTeam";
 import GestionUser from "./views/GestionUser";
+import WorkingTimeById from "./views/WorkingTimeModule/WorkingTimeById";
 
 Vue.use(Router);
 
@@ -50,8 +51,9 @@ let router = new Router({
         },
         {
             path: '/workingTimes/user/:userId',
-            name: 'workingTimeCurrentUser',
-            component: ProfileUser,
+            name: 'workingTimeofUserId',
+            component: WorkingTimeUser,
+            props : true,
             meta: {
                 requiresAuth: true,
                 is_manager: true,
@@ -78,7 +80,7 @@ let router = new Router({
         {
             path: '/workingTime/:workingTimeId',
             name: 'modifyWorkingTime',
-            component: WorkingTimeUser,
+            component: WorkingTimeById,
             meta: {}
         },
         {
@@ -121,7 +123,10 @@ let router = new Router({
             path: '/users/',
             name: 'listUser',
             component: GestionUser,
-            meta: {}
+            meta: {
+                is_admin :true,
+                requiresAuth : true,
+            }
 
         },
         {
@@ -184,13 +189,13 @@ router.beforeEach((to, from, next) => {
                 if (user.role === "Administrator") {
                     next()
                 } else {
-                    next({name: '/'})
+                    next({name: 'home'})
                 }
             } else if (to.matched.some(record => record.meta.is_manager)) {
                 if (user.role === "Administrator" || user.role === "Manager") {
                     next()
                 } else {
-                    next({name: '/'});
+                    next({name: 'home'});
                 }
             } else {
                 next()
@@ -200,7 +205,7 @@ router.beforeEach((to, from, next) => {
         if (localStorage.getItem('jwt') == null) {
             next()
         } else {
-            next({name: 'welcome'})
+            next({name: 'home'})
         }
     } else {
         next()

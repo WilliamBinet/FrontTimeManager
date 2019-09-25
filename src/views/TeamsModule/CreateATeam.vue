@@ -4,7 +4,8 @@
             <div class="card m-2">
                 <h5 class="card-header">Create a team</h5>
                 <div class="card-body">
-                    <input v-model="name" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                    <input v-model="name" type="text" class="form-control" placeholder="Team's Name"
+                           aria-label="Username"
                            aria-describedby="basic-addon1">
                     <Multiselect v-if="listManager && currentUser.role !== 'Manager'"
                                  v-model="selectedManager"
@@ -48,13 +49,19 @@
             },
 
             createTeam() {
+                console.log(this.selectedManager);
                 return TeamService.createATeam(this.name, this.selectedManager.id)
             },
             loadManager() {
-                return UserService.getUsersByRole('Manager').then(resp => {
-                    this.listManager = resp.data;
-                });
+                if (this.currentUser.role === 'Manager') {
+                    this.selectedManager = this.currentUser;
+                } else {
+                    return UserService.getUsersByRole('Manager').then(resp => {
+                        this.listManager = resp.data;
+                    });
+                }
             }
+
         }
     }
 </script>

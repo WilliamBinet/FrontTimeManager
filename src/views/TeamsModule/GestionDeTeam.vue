@@ -113,7 +113,7 @@
 
 
             getTeamsOfUser() {
-                if (this.currentUser.role === 'Administator') {
+                if (this.currentUser.role === 'Administrator') {
                     TeamService.getAllTeams().then(resp => {
                         this.teams = resp.data;
                     });
@@ -192,12 +192,14 @@
             },
 
             editTeam() {
-                let team = {};
+                let team = {
+
+                };
                 if (this.newName !== null || this.newName !== '') {
                     team.name = this.newName;
                 }
                 if (this.newManager !== null) {
-                    team.id_manager.id = this.newManager.id;
+                    team.id_manager = this.newManager.id;
                 }
                 return TeamService.editTeam(this.selectedTeam.id, team).then(resp => {
                     alert(resp.statusText);

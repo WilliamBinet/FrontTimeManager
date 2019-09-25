@@ -1,11 +1,19 @@
 import axios from 'axios'
 
+const pathWorkingTimes = '/workingtimes';
+
 export default  {
     getWorkingTimeFromUser(start, end, idUser) {
-        return  axios.get( process.env.VUE_APP_URL + '/workingtimes/' + idUser + '?start=' + start +'&end=' + end)
+        return  axios.get( process.env.VUE_APP_URL + pathWorkingTimes +'/users/' + idUser + '?start=' + start +'&end=' + end)
             .catch(e => {
                 alert(e.response.data);
             })
+    },
+
+    getWorkingTimeById(idWorkingTime) {
+        return axios.get(process.env.VUE_APP_URL + pathWorkingTimes + '/' + idWorkingTime).catch(e => {
+            throw e;
+        });
     },
 
     deleteWorkingTime(idWorkingTime) {
