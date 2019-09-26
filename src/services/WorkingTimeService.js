@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './AxiosService'
 import id from "bootstrap-vue/esm/mixins/id";
 
 const pathWorkingTimes = '/workingtimes';

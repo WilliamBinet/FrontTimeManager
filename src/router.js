@@ -15,6 +15,7 @@ import GestionUser from "./views/GestionUser";
 import WorkingTimeById from "./views/WorkingTimeModule/WorkingTimeById";
 import NewWorkingTime from "./views/WorkingTimeModule/NewWorkingTime";
 import WorkingTimeChart from "./components/charts/WorkingTimeChart";
+import jwtDecoder from 'jwt-decode'
 
 Vue.use(Router);
 
@@ -184,7 +185,7 @@ router.beforeEach((to, from, next) => {
                 params: {nextUrl: to.fullPath}
             })
         } else {
-            let user = JSON.parse(localStorage.getItem('user'));
+            let user = jwtDecoder(localStorage.getItem('jwt'));
             if (to.matched.some(record => record.meta.is_admin)) {
                 if (user.role === "Administrator") {
                     next()

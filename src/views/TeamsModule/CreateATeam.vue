@@ -25,6 +25,7 @@
     import UserService from '../../services/UserService';
     import Multiselect from 'vue-multiselect'
     import NavigationBar from "../HeaderFooter/NavigationBar";
+    import jwtDecoder from 'jwt-decode'
 
     export default {
         name: "CreateATeam",
@@ -35,7 +36,7 @@
                 name: null,
                 listManager: null,
                 selectedManager: null,
-                currentUser: JSON.parse(localStorage.getItem('user'))
+                currentUser: jwtDecoder(localStorage.getItem('jwt'))
             };
         },
 

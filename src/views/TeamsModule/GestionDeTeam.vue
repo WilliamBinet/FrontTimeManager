@@ -19,7 +19,8 @@
             <div class="card m-2" v-if="selectedTeam">
                 <h5 class="card-header">Edit {{selectedTeam.name}}</h5>
                 <div class="card-body">
-                    <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                    <input v-model="newName" type="text" class="form-control" placeholder="Username"
+                           aria-label="Username"
                            aria-describedby="basic-addon1">
                     <Multiselect v-if="listManager && currentUser.role !== 'Manager'"
                                  v-model="newManager"
@@ -76,6 +77,7 @@
     import axios from 'axios'
     import NavigationBar from "../HeaderFooter/NavigationBar";
     import CreateATeam from "./CreateATeam";
+    import jwtDecoder from 'jwt-decode'
 
     export default {
         name: "GestionDeTeam",
@@ -93,12 +95,12 @@
                 selectedUserToDelete: null,
                 selectedUserToAdd: null,
                 options: [],
-                currentUser: JSON.parse(localStorage.getItem('user'))
+                currentUser: jwtDecoder(localStorage.getItem('jwt'))
             }
         },
         created: function () {
             this.getTeamsOfUser();
-            this.getAllUsers();
+            if (this.currentUser.role !== 'Employee') this.getAllUsers();
             this.loadManager();
         },
 
@@ -192,9 +194,7 @@
             },
 
             editTeam() {
-                let team = {
-
-                };
+                let team = {};
                 if (this.newName !== null || this.newName !== '') {
                     team.name = this.newName;
                 }

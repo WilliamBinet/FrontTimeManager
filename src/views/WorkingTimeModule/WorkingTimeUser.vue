@@ -61,6 +61,7 @@
     import WorkingTimeService from "../../services/WorkingTimeService";
     import NavigationBar from "../HeaderFooter/NavigationBar";
     import UserService from "../../services/UserService";
+    import jwtDecoder from 'jwt-decode'
 
     export default {
         components: {NavigationBar, VueCtkDateTimePicker},
@@ -120,7 +121,7 @@
 
             initUser() {
                 if (this.$props.userId === undefined) {
-                    this.currentUser = JSON.parse(localStorage.getItem('user'));
+                    this.currentUser = jwtDecoder(localStorage.getItem('jwt'));
                     console.log( 'Mon user ' + this.currentUser);
                     this.loadWorkingTime();
                 }

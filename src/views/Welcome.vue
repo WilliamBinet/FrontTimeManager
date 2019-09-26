@@ -8,13 +8,14 @@
 <script>
     import NavigationBar from "./HeaderFooter/NavigationBar";
     import Footer from "./HeaderFooter/Footer";
+    import jwtDecoder from 'jwt-decode'
 
     export default {
         name: "Welcome",
         components: {Footer, NavigationBar},
         data() {
             return {
-                user: JSON.parse(localStorage.getItem('user'))
+                user: localStorage.getItem('jwt') !== null ?  jwtDecoder(localStorage.getItem('jwt')) :  null
             };
         }
     }

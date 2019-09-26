@@ -18,6 +18,9 @@
 <script>
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import ClockService from "../services/ClockService";
+    import jwtDecoder from 'jwt-decode'
+
+
     export default {
         components :{VueCtkDateTimePicker},
         name: "Clocks",
@@ -44,8 +47,7 @@
                         this.currentClock = resp.data;
                     })
                 } else {
-                    console.log('passe 2');
-                    ClockService.getClockByUserId(JSON.parse(localStorage.getItem('user')).id).then(resp => {
+                    ClockService.getClockByUserId(jwtDecoder(localStorage.getItem('jwt')).id).then(resp => {
                         this.currentClock = resp.data;
                         this.setLabel();
                     });
@@ -53,7 +55,7 @@
             },
 
             updateClock () {
-                ClockService.updateClock(JSON.parse(localStorage.getItem('user')).id).then( resp => {
+                ClockService.updateClock(jwtDecoder(localStorage.getItem('jwt')).id).then( resp => {
                     this.getCurrentClock();
                     }
                 )
