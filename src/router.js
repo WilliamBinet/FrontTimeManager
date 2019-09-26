@@ -14,6 +14,7 @@ import GestionDeTeam from "./views/TeamsModule/GestionDeTeam";
 import GestionUser from "./views/GestionUser";
 import WorkingTimeById from "./views/WorkingTimeModule/WorkingTimeById";
 import NewWorkingTime from "./views/WorkingTimeModule/NewWorkingTime";
+import WorkingTimeChart from "./components/charts/WorkingTimeChart";
 
 Vue.use(Router);
 
@@ -106,6 +107,11 @@ let router = new Router({
                 requiresAuth: true,
                 is_manager: true,
             }
+        },
+        {
+            path: '/graphDeMerde',
+            name: 'editClockUser',
+            component: WorkingTimeChart,
         },
 
         {

@@ -5,6 +5,7 @@ import Axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import jwtDecode from 'jwt-decode';
 
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;

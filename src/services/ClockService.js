@@ -15,9 +15,10 @@ export default {
     updateClock(userId) {
         let update = {
             update: {
-                time: dateFormat(new Date(), 'yyyy-mm-dd hh:MM:ss')
+                time: dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss')
             }
         };
+        console.log(update);
         return axios.post(process.env.VUE_APP_URL + '/clocks/' + userId, update).catch(e => {
             alert(e.response.statusText);
         })

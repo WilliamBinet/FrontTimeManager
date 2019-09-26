@@ -62,7 +62,6 @@
     import { SidebarMenu } from 'vue-sidebar-menu'
     import NavigationBar from "./HeaderFooter/NavigationBar";
     import axios from 'axios';
-    import Bus from '../utils/Bus'
     export default {
         name: "sign_in",
         components: {NavigationBar ,SidebarMenu},
@@ -90,6 +89,7 @@
 
                             localStorage.setItem('user',JSON.stringify(response.data.user) );
                             localStorage.setItem('jwt',response.data.token);
+
                             if (localStorage.getItem('jwt') != null){
                                 if(this.$route.params.nextUrl != null){
                                     this.$router.push(this.$route.params.nextUrl)

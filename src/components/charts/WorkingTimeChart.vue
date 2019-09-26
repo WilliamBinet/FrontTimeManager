@@ -26,7 +26,7 @@ export default {
       },
       series: [
         {
-          name: "Jocker",
+          name: "Joker",
           data: [{
               x: '11 Feb 2017',
               y: 7
@@ -43,7 +43,7 @@ export default {
               x: '15 Feb 2017',
               y: 6
           },
-            
+
                     {
               x: '17 Feb 2017',
               y: 6
