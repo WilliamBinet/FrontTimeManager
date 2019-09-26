@@ -1,19 +1,35 @@
 <template>
     <div>
-        <button v-if="currentClock" @click="updateClock">{{this.labelButton}}</button>
+        <button v-if="currentClock && !this.$props.userId" @click="updateClock">{{this.labelButton}}</button>
+        <div v-else>
+            <vue-ctk-date-time-picker v-if="currentClock" v-model="currentClock.time"/>
+            <label>Status
+                <select v-if="currentClock" v-model="currentClock.status">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </label>
+            <input type="button" class="btn-default" v-if="currentClock" @click="updateClockAdmin">
+        </div>
+
     </div>
 </template>
 
 <script>
+    import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import ClockService from "../services/ClockService";
     export default {
+        components :{VueCtkDateTimePicker},
         name: "Clocks",
         data() {
             return {
                 labelButton: null,
                 currentClock: null,
-                options: []
             }
+        },
+
+        props : {
+            userId : String
         },
 
         created: function () {
@@ -22,10 +38,18 @@
 
         methods: {
             getCurrentClock() {
-                ClockService.getClockByUserId(JSON.parse(localStorage.getItem('user')).id).then(resp => {
-                    this.currentClock = resp.data;
-                    this.setLabel();
-                })
+                if (this.$props.userId) {
+                    console.log('passe 1 ');
+                    ClockService.getClockByUserId(this.$props.userId).then( resp => {
+                        this.currentClock = resp.data;
+                    })
+                } else {
+                    console.log('passe 2');
+                    ClockService.getClockByUserId(JSON.parse(localStorage.getItem('user')).id).then(resp => {
+                        this.currentClock = resp.data;
+                        this.setLabel();
+                    });
+                }
             },
 
             updateClock () {
@@ -35,9 +59,16 @@
                 )
             },
 
+            updateClockAdmin() {
+                ClockService.updateClockAdmin(this.currentClock, this.currentClock.id_user).then(resp => {
+                    alert ('update ok');
+                })
+            },
+
             setLabel() {
                 if (this.currentClock.status){
                     this.labelButton = 'Clock out';
+
                 } else {
                     this.labelButton = 'Clock in';
                 }

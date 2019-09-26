@@ -97,16 +97,16 @@ let router = new Router({
             meta: {}
 
         },
-        //TODO
-        // {
-        //     path: '/clock/user/:userId',
-        //     name: 'editClockUser',
-        //     component: Clocks,
-        //     meta: {
-        //         requiresAuth: true,
-        //         is_manager: true,
-        //     }
-        // },
+        {
+            path: '/clock/user/:userId',
+            name: 'editClockUser',
+            component: Clocks,
+            props : true,
+            meta: {
+                requiresAuth: true,
+                is_manager: true,
+            }
+        },
 
         {
             path: '/my_teams',

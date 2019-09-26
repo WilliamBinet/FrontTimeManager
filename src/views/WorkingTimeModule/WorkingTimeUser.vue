@@ -56,8 +56,6 @@
 
 <script>
     import dateFormat from 'dateformat';
-    import Datepicker from 'vuejs-datepicker';
-    import Datetime from 'vue-datetime';
     import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
     import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
     import WorkingTimeService from "../../services/WorkingTimeService";
