@@ -108,11 +108,6 @@ let router = new Router({
                 is_manager: true,
             }
         },
-        {
-            path: '/graphDeMerde',
-            name: 'editClockUser',
-            component: WorkingTimeChart,
-        },
 
         {
             path: '/my_teams',
