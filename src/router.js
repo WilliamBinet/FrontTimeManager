@@ -13,6 +13,7 @@ import ProfileUser from "./views/ProfileUser";
 import GestionDeTeam from "./views/TeamsModule/GestionDeTeam";
 import GestionUser from "./views/GestionUser";
 import WorkingTimeById from "./views/WorkingTimeModule/WorkingTimeById";
+import NewWorkingTime from "./views/WorkingTimeModule/NewWorkingTime";
 
 Vue.use(Router);
 
@@ -70,7 +71,8 @@ let router = new Router({
         {
             path: '/workingTime/user/:userId',
             name: 'addWorkingTimeIdUser',
-            component: ProfileUser,
+            component: NewWorkingTime,
+            props : true,
             meta: {
                 is_manager: true, requiresAuth: true,
 

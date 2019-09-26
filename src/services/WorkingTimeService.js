@@ -1,4 +1,5 @@
 import axios from 'axios'
+import id from "bootstrap-vue/esm/mixins/id";
 
 const pathWorkingTimes = '/workingtimes';
 
@@ -30,6 +31,15 @@ export default  {
         return axios.put(process.env.VUE_APP_URL + /workingtimes/ + workingTime.id, update).catch( e => {
             alert("Cannot update" + e.response.statusText) ;
         });
+    },
 
+    insertWorkingTime(workingTime, idUser) {
+        let workingT = {
+            WorkingTime : workingTime,
+        };
+        console.log(workingT);
+        return axios.post(process.env.VUE_APP_URL + '/workingtimes/' + idUser, workingT).catch(e => {
+            alert (e.response.statusText);
+        })
     }
 }
