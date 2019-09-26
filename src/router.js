@@ -44,13 +44,6 @@ let router = new Router({
             meta: {}
         },
         {
-            path: '/workingTimes',
-            name: 'workingTimeCurrentUser',
-            component: ProfileUser,
-            meta: {}
-
-        },
-        {
             path: '/workingTimes/user/:userId',
             name: 'workingTimeofUserId',
             component: WorkingTimeUser,
@@ -61,6 +54,7 @@ let router = new Router({
             }
 
         },
+        //TODO
         {
             path: '/workingTime/',
             name: 'addWorkingTimeCurrentUser',
@@ -85,6 +79,7 @@ let router = new Router({
             component: WorkingTimeById,
             meta: {}
         },
+       //TODO
         {
             path: '/workingTime/user/:userId/:workingTimeId',
             name: 'updateWorkingTimeByUserIdAndId',
@@ -102,15 +97,17 @@ let router = new Router({
             meta: {}
 
         },
-        {
-            path: '/clock/user/:userId',
-            name: 'editClockUser',
-            component: Clocks,
-            meta: {
-                requiresAuth: true,
-                is_manager: true,
-            }
-        },
+        //TODO
+        // {
+        //     path: '/clock/user/:userId',
+        //     name: 'editClockUser',
+        //     component: Clocks,
+        //     meta: {
+        //         requiresAuth: true,
+        //         is_manager: true,
+        //     }
+        // },
+
         {
             path: '/my_teams',
             name: 'getTeams',
