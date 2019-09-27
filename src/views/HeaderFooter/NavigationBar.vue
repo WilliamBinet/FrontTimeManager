@@ -20,12 +20,13 @@
 
 <script>
     import Bus from '../../utils/Bus'
+    import jwtDecoder from 'jwt-decode'
 
     export default {
         name: "NavigationBar",
         data() {
             return {
-                user: JSON.parse(localStorage.getItem('user'))
+                user:  localStorage.getItem('jwt') !== null ?  jwtDecoder(localStorage.getItem('jwt')) :  null
             };
         },
         methods: {

@@ -1,24 +1,37 @@
-import axios from 'axios'
+import axios from './AxiosService'
+
 var dateFormat = require('dateformat');
 
-export default  {
+export default {
 
     getClockByUserId(userId) {
         let now = new Date();
         console.log(now);
-        console.log(process.env.VUE_APP_URL);
-        return axios.get(process.env.VUE_APP_URL+'/clocks/' + userId).catch( e => { alert(e.response.statusText)});
+        return axios.get(process.env.VUE_APP_URL + '/clocks/' + userId).catch(e => {
+            alert(e.response.statusText)
+        });
     },
 
     updateClock(userId) {
         let update = {
-            update : {
+            update: {
                 time: dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss')
             }
         };
-        return axios.post(process.env.VUE_APP_URL+'/clocks/' + userId,update).catch(e => {
+        console.log(update);
+        return axios.post(process.env.VUE_APP_URL + '/clocks/' + userId, update).catch(e => {
             alert(e.response.statusText);
         })
+    },
+
+    updateClockAdmin(clock, userId) {
+        let updates = {
+            updates: clock
+        };
+        return  axios.put(process.env.VUE_APP_URL + '/clocks/' + userId, updates).catch(e => {
+                alert(e);
+            }
+        )
     }
 
 }

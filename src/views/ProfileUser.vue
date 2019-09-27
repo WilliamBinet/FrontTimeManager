@@ -19,6 +19,8 @@
 
 <script>
     import UserService from "../services/UserService";
+    import jwtDecoder from 'jwt-decode'
+
     export default {
         data() {
             return {
@@ -48,7 +50,7 @@
                    this.user = resp.data;
                 });
             } else {
-                this.user = JSON.parse(localStorage.getItem('user'));
+                this.user = jwtDecoder(localStorage.getItem('jwt'));
             }
         },
         name: "ProfileUser",

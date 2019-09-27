@@ -62,6 +62,8 @@
     import NavigationBar from "./HeaderFooter/NavigationBar";
     import UserService from "../services/UserService";
     import Multiselect from 'vue-multiselect'
+    import jwtDecoder from 'jwt-decode'
+
 
     export default {
         name: "GestionUser",
@@ -70,7 +72,7 @@
 
         data() {
             return {
-                currentUser : JSON.parse(localStorage.getItem('user')),
+                currentUser : jwtDecoder(localStorage.getItem('jwt')),
                 listUser : null,
                 toSearchEmail : '',
                 roles: ['Administrator', 'Manager','Employee'],

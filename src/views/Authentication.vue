@@ -62,7 +62,7 @@
     import { SidebarMenu } from 'vue-sidebar-menu'
     import NavigationBar from "./HeaderFooter/NavigationBar";
     import axios from 'axios';
-    import Bus from '../utils/Bus'
+    import jwtDecoder from 'jwt-decode'
     export default {
         name: "sign_in",
         components: {NavigationBar ,SidebarMenu},
@@ -86,9 +86,9 @@
                     .then(response => {
                         if (response.status === 200) {
                             console.log(response);
+                            console.log(response.data.token);
                             this.wrongpassoremail = false;
-
-                            localStorage.setItem('user',JSON.stringify(response.data.user) );
+                            localStorage.setItem('user', response.data.user);
                             localStorage.setItem('jwt',response.data.token);
                             if (localStorage.getItem('jwt') != null){
                                 if(this.$route.params.nextUrl != null){

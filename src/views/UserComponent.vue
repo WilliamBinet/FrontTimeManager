@@ -35,7 +35,7 @@
             },
             createuser (e) {
                 e.preventDefault()
-                let currentObj = this
+                let currentObj = this;
                 this.axios.post('http://localhost:3000/users/', {
                     username: currentObj.username,
                     email: currentObj.email,
