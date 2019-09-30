@@ -95,7 +95,7 @@
                                 }
                                 else {
                                     this.$router.push('/#/');
-                                    this.$forceUpdate();
+
                                 }
                             }
                         }

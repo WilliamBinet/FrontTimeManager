@@ -17,6 +17,9 @@ export default {
     Footer,
     NavigationBar,
     GohtamBackground
+  },
+  created() {
+    this.$forceUpdate();
   }
 }
 </script>
