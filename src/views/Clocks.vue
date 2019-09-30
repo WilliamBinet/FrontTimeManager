@@ -67,6 +67,15 @@
                 })
             },
 
+            getCurrentClock2 () {
+                ClockService.getClockByUserId(1).then(resp => {
+                    this.currentClock = resp.data;
+                }).catch(e => {
+                    console.log(e.message);
+                })
+
+            },
+
             setLabel() {
                 if (this.currentClock.status){
                     this.labelButton = 'Clock out';

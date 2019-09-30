@@ -1,30 +1,45 @@
 <template>
-    <div class="d-block">
-        <label class="m-2 d-block">
-            First name
-            <input type="text" v-if="user" v-model="user.firstname">
-        </label>
-        <label class="m-2 d-block">
-        Last name
-        <input type="text" v-if="user" v-model="user.lastname">
-        </label>
-        <label class="m-2 d-block">
-        Email
-        <input type="text" v-if="user" v-model="user.email">
-        </label>
-        <button v-if="user" @click="update" >Update</button>
-        <button v-if="user" @click="deleteUser" >Delete Account</button>
+    <div>
+        <NavigationBar/>
+        <div class="d-block">
+
+            <label class="m-2 d-block">
+                First name
+                <input type="text" v-if="user" v-model="user.firstname">
+            </label>
+            <label class="m-2 d-block">
+                Last name
+                <input type="text" v-if="user" v-model="user.lastname">
+            </label>
+            <label class="m-2 d-block">
+                Email
+                <input type="text" v-if="user" v-model="user.email">
+            </label>
+            <label class="m-2 d-block">
+                Role
+                <input type="text" v-if="user" v-model="user.role">
+            </label>
+            <button v-if="user" @click="update" >Update</button>
+            <button v-if="user" @click="deleteUser" >Delete Account</button>
+        </div>
+    <Footer/>
     </div>
+
 </template>
 
 <script>
     import UserService from "../services/UserService";
     import jwtDecoder from 'jwt-decode'
+    import NavigationBar from "./HeaderFooter/NavigationBar";
+    import Footer from "./HeaderFooter/Footer";
 
     export default {
+        components: {Footer, NavigationBar},
         data() {
             return {
                 user: null,
+                roles: ['Administrator','Manager','Employee'],
+
             }
         },
 
