@@ -41,5 +41,11 @@ export default  {
         return axios.post(process.env.VUE_APP_URL + '/workingtimes/' + idUser, workingT).catch(e => {
             alert (e.response.statusText);
         })
+    },
+
+    getWorkingTimeOfUserId(idUser) {
+        return axios.get(process.env.VUE_APP_URL + '/workingtimes/' + idUser).catch(e => {
+            alert(e.response.statusText);
+        })
     }
 }
