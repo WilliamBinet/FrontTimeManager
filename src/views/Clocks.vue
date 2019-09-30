@@ -1,14 +1,16 @@
 <template>
     <div>
-        <div id="clock">
-            <p class="date">{{ date }}</p>
-            <p  class="time">{{ time }}</p>
-            <p class="count">{{ count }}</p>
-        </div>
         <div>
-            <button v-if="currentClock" @click="updateClock">ouss+{{this.labelButton}}</button>
-            <button v-if="currentClock.status" @click="updateClock">ouss</button>
-            <button v-else-if="!currentClock.status" @click="updateClock">ouzz</button>
+            <div id="clock">
+                <p class="date">{{ date }}</p>
+                <p  class="time">{{ time }}</p>
+                <p class="count">{{ count }}</p>
+            </div>
+            <div>
+                <button v-if="currentClock" @click="updateClock">ouss+{{this.labelButton}}</button>
+                <button v-if="currentClock.status" @click="updateClock">ouss</button>
+                <button v-else-if="!currentClock.status" @click="updateClock">ouzz</button>
+            </div>
         </div>
     </div>
 </template>
@@ -17,6 +19,7 @@
 
 <script>
     const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    import jwtDecoder from 'jwt-decode'
     import ClockService from "../services/ClockService";
     export default {
         name: "Clocks",
@@ -45,8 +48,7 @@
 
         methods: {
             getCurrentClock() {
-                console.log(JSON.parse(localStorage.getItem('user')).id);
-                ClockService.getClockByUserId(JSON.parse(localStorage.getItem('user')).id).then(resp => {
+                ClockService.getClockByUserId(jwtDecoder(localStorage.getItem('jwt')).id).then(resp => {
                     this.currentClock = resp.data;
                     this.setLabel();
                     this.start=this.currentClock.time;
