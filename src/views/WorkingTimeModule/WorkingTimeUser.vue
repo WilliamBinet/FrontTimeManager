@@ -78,8 +78,8 @@
             }
         },
         created: function () {
-            this.start = dateFormat(new Date().setFullYear(2019), 'yyyy-mm-dd hh:MM:ss');
-            this.end = dateFormat(new Date().setFullYear(3000), 'yyyy-mm-dd hh:MM:ss');
+            this.start = dateFormat(new Date().setMonth(new Date().getMonth() - 1), 'yyyy-mm-dd hh:MM:ss');
+            this.end = dateFormat(new Date(), 'yyyy-mm-dd hh:MM:ss');
             this.initUser();
 
         },
