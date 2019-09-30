@@ -15,7 +15,7 @@ export default {
     updateClock(userId) {
         let update = {
             update: {
-                time: dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss')
+                time: dateFormat(new Date().setHours(new Date().getHours() - 2) , 'yyyy-mm-dd HH:MM:ss')
             }
         };
         console.log(update);
