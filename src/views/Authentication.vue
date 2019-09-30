@@ -88,14 +88,14 @@
                             console.log(response);
                             console.log(response.data.token);
                             this.wrongpassoremail = false;
-                            localStorage.setItem('user', response.data.user);
                             localStorage.setItem('jwt',response.data.token);
                             if (localStorage.getItem('jwt') != null){
                                 if(this.$route.params.nextUrl != null){
                                     this.$router.push(this.$route.params.nextUrl)
                                 }
                                 else {
-                                    this.$router.push('/')
+                                    this.$router.push('/');
+                                    this.$forceUpdate();
                                 }
                             }
                         }
