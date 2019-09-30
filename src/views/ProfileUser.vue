@@ -53,7 +53,7 @@
             deleteUser(){
                 UserService.deleteUser(this.user.id).then(resp => {
                    this.user = null;
-                    this.$router.push('/');
+                    this.$router.push('#');
                 });
             }
         },

@@ -90,7 +90,7 @@
                         if (response.status === 200) {
                             console.log(response.statusText);
                             alert("user crée");
-                            this.$router.push('/')
+                            this.$router.push('#');
                         }
                     })
                     .catch(e => {

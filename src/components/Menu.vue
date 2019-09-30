@@ -144,7 +144,7 @@ export default {
       this.menuItens = this.menuData[context];
 
       if (context === 'home') {
-        this.$router.push('/');
+        this.$router.push('#');
         window.bus.$emit('menu/closeMobileMenu');
       }
     },

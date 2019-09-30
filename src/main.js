@@ -10,7 +10,6 @@ Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
 Vue.use(router);
 const token = localStorage.getItem('jwt');
-console.log('THE DAMN TOKEN => ' + token);
 if (token ===! '') {
   axios.defaults.headers.common['Authorization'] = token;
 }
