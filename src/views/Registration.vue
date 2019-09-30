@@ -83,7 +83,7 @@
         methods: {
             register: function () {
                 let user = this.user;
-                axios.post(`http://localhost:3000/users/sign_up`, {
+                axios.post(process.env.VUE_APP_URL + `/users/sign_up`, {
                     user
                 })
                     .then(response => {

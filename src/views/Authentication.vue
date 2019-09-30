@@ -80,7 +80,7 @@
         methods: {
             created: function (event) {
                 let user = this.user;
-                axios.post(`http://localhost:3000/users/sign_in`,  {
+                axios.post(process.env.VUE_APP_URL + `/users/sign_in`,  {
                      user
                 })
                     .then(response => {
