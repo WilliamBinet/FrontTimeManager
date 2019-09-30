@@ -36,7 +36,7 @@
                 localStorage.removeItem('user');
                 localStorage.removeItem('jwt');
                 this.user = null;
-                this.$router.push('#');
+                this.$router.push('/#/');
             },
         }
     }
