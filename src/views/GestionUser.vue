@@ -36,15 +36,18 @@
                                     :custom-label="labelRole"
                                     :placeholder ="`Please select a Role`">
                             </Multiselect></td>
+                            <td><span class="table-remove"><button type="button"
+                                                                   @click="updateUser(user)"
+                                                                   class="btn btn-danger btn-rounded btn-sm my-0">Update</button></span>
+                            </td>
                             <td class="pt-3-half" contenteditable="false"><input type="button" @click="gotoWorkingTime(user.id)" value="Voir WorkingTime" /></td>
 
                             <td><span class="table-remove"><button type="button"
                                                                    @click="deleteUser(user)"
                                                                    class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                            </td><td><span class="table-remove"><button type="button"
-                                                                        @click="updateUser(user)"
-                                                                        class="btn btn-danger btn-rounded btn-sm my-0">Update</button></span>
-                        </td>
+                            </td>
+
+
                         </tr>
                         </tbody>
                     </table>
