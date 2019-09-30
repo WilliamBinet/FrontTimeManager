@@ -53,6 +53,8 @@
                     this.setLabel();
                     this.start=this.currentClock.time;
                     this.setMode();
+                    console.log("************************");
+                    console.log(this.currentClock.time);
                 })
             },
             setMode() {
@@ -89,6 +91,7 @@
                     this.labelButton = 'Clock out';
                 } else {
                     this.labelButton = 'Clock in';
+                    this.count="00:00:00";
                 }
             },
             runClock() {
@@ -110,64 +113,16 @@
                     zeroPadding(cd.getDate(), 2) +
                     " " +
                     week[cd.getDay()];
-                const ouss = Math.floor((cd.getTime() - new Date(this.start).getTime())/1000);
+                const ouss = Math.floor((cd.getTime() - new Date(this.start).getTime())/1000)+7200;
                 console.log(ouss);
 
 
 
-                if (this.start !== "") {
+                if (this.start !== "" && this.currentClock.status) {
                     //console.log(cd.getSeconds())
                     const hour=Math.floor(ouss/3600);
                     const min =Math.floor((ouss%3600)/60);
                     const second= (ouss%3600)%60;
-                    /*switch (this.mode) {
-                        case "counter":
-                            this.count =
-                                adjust({
-                                    clock: cd.getHours(),
-                                    start: startDate.getHours(),
-                                    span: 24
-                                }) +
-                                ":" +
-                                adjust({
-                                    clock: cd.getMinutes(),
-                                    start: startDate.getMinutes(),
-                                    span: 60
-                                }) +
-                                ":" +
-                                adjust({
-                                    clock: cd.getSeconds(),
-                                    start: startDate.getSeconds(),
-                                    span: 60
-                                });
-                            break;
-                        case "countdown":
-                            this.count =
-                                adjust({
-                                    clock: cd.getHours(),
-                                    start: startDate.getHours(),
-                                    span: 24,
-                                    shift: 7
-                                }) +
-                                ":" +
-                                adjust({
-                                    clock: cd.getMinutes(),
-                                    start: startDate.getMinutes(),
-                                    span: 60,
-                                    shift: 60
-                                }) +
-                                ":" +
-                                adjust({
-                                    clock: cd.getSeconds(),
-                                    start: startDate.getSeconds(),
-                                    span: 60,
-                                    shift: 60
-                                });
-                            break;
-                        case "none":
-                                this.count="00:00:00";
-                            break;
-                    }*/
                     this.count =
                         zeroPadding(hour, 2) +
                         ":" +
