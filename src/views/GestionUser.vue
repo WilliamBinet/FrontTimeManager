@@ -18,8 +18,8 @@
                             <th class="text-center">Last Name</th>
                             <th class="text-center">Role</th>
                             <th class="text-center">Working time</th>
-                            <th class="text-center">Remove</th>
                             <th class="text-center">Update</th>
+                            <th class="text-center">Remove</th>
                         </tr>
                         </thead>
                         <tbody>

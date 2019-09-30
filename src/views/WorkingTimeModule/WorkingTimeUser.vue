@@ -20,8 +20,8 @@
                             <th class="text-center">ID</th>
                             <th class="text-center">Début</th>
                             <th class="text-center">Fin</th>
-                            <th class="text-center">Delete</th>
                             <th class="text-center">Update</th>
+                            <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,13 +34,14 @@
                             <td class="pt-3-half" contenteditable="false">
                                 <VueCtkDateTimePicker v-model="working.end"/>
                             </td>
-                            <td><span class="table-remove"><button type="button"
-                                                                   @click="webcamSendRequestButton(working)"
-                                                                   class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                            </td>
+
                             <td><span class="table-remove"><button type="button"
                                                                    @click="updateWorkingTime(working)"
                                                                    class="btn btn-danger btn-rounded btn-sm my-0">Update</button></span>
+                            </td>
+                            <td><span class="table-remove"><button type="button"
+                                                                   @click="webcamSendRequestButton(working)"
+                                                                   class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                             </td>
                         </tr>
                         </tbody>

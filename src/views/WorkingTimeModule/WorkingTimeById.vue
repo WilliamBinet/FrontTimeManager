@@ -6,8 +6,9 @@
             <tr>
                 <th class="text-center">Début</th>
                 <th class="text-center">Fin</th>
-                <th class="text-center">Delete</th>
                 <th class="text-center">Update</th>
+
+                <th class="text-center">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -19,13 +20,14 @@
                     <VueCtkDateTimePicker v-model="working.end"/>
                 </td>
                 <td><span class="table-remove"><button type="button"
-                                                       @click="deleteWT(working)"
-                                                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
-                <td><span class="table-remove"><button type="button"
                                                        @click="updateWorkingTime(working)"
                                                        class="btn btn-danger btn-rounded btn-sm my-0">Update</button></span>
                 </td>
+                <td><span class="table-remove"><button type="button"
+                                                       @click="deleteWT(working)"
+                                                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                </td>
+
             </tr>
             </tbody>
         </table>
