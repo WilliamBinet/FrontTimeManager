@@ -67,7 +67,7 @@
 
             updateClock() {
                 this.setMode();
-                ClockService.updateClock(JSON.parse(localStorage.getItem('user')).id).then(resp => {
+                ClockService.updateClock(jwtDecoder(localStorage.getItem('jwt')).id).then(resp => {
                         this.getCurrentClock();
                     }
                 )
