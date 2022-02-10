@@ -16,7 +16,7 @@
     "dateformat": "^3.0.3",
     "jwt-decode": "^2.2.0",
     "luxon": "^1.19.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
     "vue-apexcharts": "^1.5.0",
